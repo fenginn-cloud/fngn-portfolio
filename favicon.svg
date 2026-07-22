@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="N ve M monogramı">
+  <rect width="64" height="64" rx="14" fill="#30483C"/>
+  <g fill="none" stroke="#F8F5EF" stroke-width="0.6">
+    <rect x="6.5" y="6.5" width="51" height="51" rx="10" opacity="0.35"/>
+  </g>
+  <text x="32" y="41"
+        font-family="Cormorant Garamond, Georgia, serif"
+        font-size="30" font-weight="500"
+        text-anchor="middle" fill="#F8F5EF">
+    N<tspan fill="#D7A6AD" font-style="italic" font-size="20">&amp;</tspan>M
+  </text>
+</svg>
