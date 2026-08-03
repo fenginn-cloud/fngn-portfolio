@@ -134,6 +134,16 @@ body {
   transition: transform 1.3s var(--ease-cine), opacity 1s var(--ease-cine), visibility 1.3s;
 }
 .veil.is-lifted { transform: translateY(-102%); opacity: 0; visibility: hidden; }
+
+/* --- KULLANICI TASARIMI AÇILIŞ GÖRSELİ (opsiyonel) ---
+   Görsel geldiğinde: index.html'de <div id="veil"> öğesine "veil--image"
+   sınıfını ekle ve aşağıdaki background-image yolunu aç. İçteki CSS
+   monogram/metin otomatik gizlenir (görselde zaten var). */
+.veil--image {
+  background: #30483C center / cover no-repeat;
+  /* background-image: url("assets/veil.webp"); */
+}
+.veil--image .veil__inner { display: none; }
 .veil__inner { text-align: center; color: var(--c-white); }
 .veil__seal { width: 116px; height: 116px; margin: 0 auto; color: var(--c-rose); }
 .veil__ring {
@@ -495,13 +505,53 @@ body.is-ready .rise[data-rise="7"] { transition-delay: 1.15s; }
   .cd-label { font-size: 0.55rem; letter-spacing: 0.1em; }
   .hero__eyebrow { letter-spacing: 0.34em; }
 }
-@media (min-width: 768px) {
-  :root { --maxw: 780px; }
-  .details__row { padding: 1.7rem 0.5rem; }
-}
-@media (min-width: 1024px) {
-  .hero__names .name { font-size: clamp(5.4rem, 8.5vw, 8rem); }
-  .hero__names .name--long { font-size: clamp(3.6rem, 5.8vw, 5.6rem); }
+
+/* ============================================================
+   MOBİL ODAKLI ÇERÇEVE
+   Tasarım tamamen mobil için kurgulandı. Geniş ekranlarda içerik
+   büyüyüp yayılmak yerine ortada telefon genişliğinde premium bir
+   sütun (kart) olarak durur; tipografi her zaman mobil ölçeğinde kalır.
+   ============================================================ */
+@media (min-width: 600px) {
+  :root {
+    --stage: 460px;                         /* telefon sütunu genişliği */
+    --stage-pad: clamp(28px, 6vh, 60px);    /* kart çevresi boşluk */
+  }
+  /* Kartın dışında kalan sakin zemin */
+  body {
+    background: linear-gradient(158deg, #ECE6DA 0%, #DFD8CA 55%, #D4CCBD 100%);
+    background-attachment: fixed;
+    padding: var(--stage-pad) 0;
+    min-height: 100vh;
+  }
+  /* Telefon sütunu — krem "davetiye sayfası" */
+  main {
+    max-width: var(--stage);
+    margin: 0 auto;
+    border-radius: 26px;
+    overflow: hidden;
+    box-shadow:
+      0 60px 140px -45px rgba(40,41,37,0.55),
+      0 0 0 1px rgba(48,72,60,0.06);
+    background:
+      radial-gradient(ellipse 55% 38% at 82% 4%, rgba(215,166,173,0.20), transparent 60%),
+      radial-gradient(ellipse 65% 45% at 6% 26%, rgba(152,166,143,0.16), transparent 55%),
+      radial-gradient(ellipse 75% 55% at 92% 72%, rgba(215,166,173,0.12), transparent 60%),
+      linear-gradient(180deg, var(--c-white) 0%, var(--c-cream) 60%, var(--c-white) 100%);
+  }
+  /* Hero kart içinde ekrana sığsın */
+  .hero { min-height: 84vh; }
+  /* Sabit dokular ve perde de telefon sütununa hizalanır */
+  .grain, .vignette, .petals, .veil {
+    left: 50%; right: auto;
+    transform: translateX(-50%);
+    top: var(--stage-pad); bottom: var(--stage-pad);
+    height: auto;
+    width: var(--stage);
+  }
+  .grain, .vignette, .petals { border-radius: 26px; }
+  .veil { border-radius: 26px; }
+  .veil.is-lifted { transform: translateX(-50%) translateY(-118%); opacity: 0; }
 }
 
 /* ============================================================

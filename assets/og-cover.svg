@@ -42,7 +42,7 @@
   <circle cx="600" cy="150" r="35" fill="none" stroke="#B97882" stroke-opacity="0.6" stroke-width="1"/>
   <text x="600" y="163" text-anchor="middle"
         font-family="Cormorant Garamond, Georgia, serif" font-size="34"
-        letter-spacing="2" fill="#F8F5EF">N<tspan fill="#D7A6AD" font-style="italic"> &amp; </tspan>M</text>
+        letter-spacing="2" fill="#F8F5EF">N<tspan fill="#D7A6AD" font-style="italic"> &amp; </tspan>F</text>
 
   <!-- Üst başlık -->
   <text x="600" y="248" text-anchor="middle"
