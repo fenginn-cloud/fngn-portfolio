@@ -1,16 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img"
      aria-label="Nisa ve Mahmud Feyzullah nişan daveti kapak görseli">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#F8F5EF"/>
-      <stop offset="1" stop-color="#EFE8DC"/>
-    </linearGradient>
-    <radialGradient id="glowRose" cx="0.85" cy="0.12" r="0.55">
-      <stop offset="0" stop-color="#D7A6AD" stop-opacity="0.55"/>
+    <radialGradient id="bg" cx="0.5" cy="0.36" r="0.75">
+      <stop offset="0" stop-color="#375243"/>
+      <stop offset="0.55" stop-color="#30483C"/>
+      <stop offset="1" stop-color="#26382F"/>
+    </radialGradient>
+    <radialGradient id="glowRose" cx="0.85" cy="0.15" r="0.5">
+      <stop offset="0" stop-color="#D7A6AD" stop-opacity="0.4"/>
       <stop offset="1" stop-color="#D7A6AD" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="glowSage" cx="0.1" cy="0.9" r="0.6">
-      <stop offset="0" stop-color="#98A68F" stop-opacity="0.5"/>
+    <radialGradient id="glowSage" cx="0.12" cy="0.85" r="0.55">
+      <stop offset="0" stop-color="#98A68F" stop-opacity="0.35"/>
       <stop offset="1" stop-color="#98A68F" stop-opacity="0"/>
     </radialGradient>
     <g id="og-branch" stroke="#98A68F" stroke-width="2" stroke-linecap="round" fill="none">
@@ -23,46 +24,45 @@
     </g>
   </defs>
 
-  <!-- Arka plan -->
+  <!-- Zemin -->
   <rect width="1200" height="630" fill="url(#bg)"/>
   <rect width="1200" height="630" fill="url(#glowRose)"/>
   <rect width="1200" height="630" fill="url(#glowSage)"/>
 
   <!-- Botanik siluetler -->
-  <use href="#og-branch" transform="translate(70 -20) rotate(-10 100 160) scale(0.95)" opacity="0.28"/>
-  <use href="#og-branch" transform="translate(1030 470) rotate(178 100 160) scale(0.95)" opacity="0.28"/>
+  <use href="#og-branch" transform="translate(60 -30) rotate(-12 100 160) scale(1.05)" opacity="0.22"/>
+  <use href="#og-branch" transform="translate(1040 480) rotate(176 100 160) scale(1.05)" opacity="0.22"/>
 
   <!-- İnce çerçeve -->
-  <rect x="40" y="40" width="1120" height="550" rx="8" fill="none"
-        stroke="#30483C" stroke-opacity="0.18" stroke-width="1.5"/>
+  <rect x="42" y="42" width="1116" height="546" rx="6" fill="none"
+        stroke="#F8F5EF" stroke-opacity="0.22" stroke-width="1.4"/>
+
+  <!-- Mühür monogram -->
+  <circle cx="600" cy="150" r="42" fill="none" stroke="#F8F5EF" stroke-opacity="0.35" stroke-width="1.2"/>
+  <circle cx="600" cy="150" r="35" fill="none" stroke="#B97882" stroke-opacity="0.6" stroke-width="1"/>
+  <text x="600" y="163" text-anchor="middle"
+        font-family="Cormorant Garamond, Georgia, serif" font-size="34"
+        letter-spacing="2" fill="#F8F5EF">N<tspan fill="#D7A6AD" font-style="italic"> &amp; </tspan>M</text>
 
   <!-- Üst başlık -->
-  <text x="600" y="150" text-anchor="middle"
-        font-family="Manrope, sans-serif" font-size="26" letter-spacing="12"
-        fill="#B97882" font-weight="500">NİŞAN DAVETİ</text>
-
-  <!-- Monogram -->
-  <text x="600" y="212" text-anchor="middle"
-        font-family="Cormorant Garamond, Georgia, serif" font-size="34"
-        letter-spacing="4" fill="#30483C">N
-    <tspan fill="#B97882" font-style="italic">&amp;</tspan>M</text>
+  <text x="600" y="248" text-anchor="middle"
+        font-family="Manrope, sans-serif" font-size="24" letter-spacing="13"
+        fill="#D7A6AD" font-weight="500">NİŞAN DAVETİ</text>
 
   <!-- Ana isimler -->
-  <text x="600" y="330" text-anchor="middle"
-        font-family="Cormorant Garamond, Georgia, serif" font-size="118"
-        font-weight="500" fill="#30483C">Nisa
-    <tspan fill="#B97882" font-style="italic" font-size="72"> &amp; </tspan>
-  </text>
-  <text x="600" y="430" text-anchor="middle"
-        font-family="Cormorant Garamond, Georgia, serif" font-size="82"
-        font-weight="500" fill="#30483C">Mahmud Feyzullah</text>
+  <text x="600" y="360" text-anchor="middle"
+        font-family="Cormorant Garamond, Georgia, serif" font-size="112"
+        font-weight="500" fill="#F8F5EF">Nisa<tspan fill="#D7A6AD" font-style="italic" font-size="66"> &amp; </tspan></text>
+  <text x="600" y="452" text-anchor="middle"
+        font-family="Cormorant Garamond, Georgia, serif" font-size="80"
+        font-weight="500" fill="#F8F5EF">Mahmud Feyzullah</text>
 
   <!-- Alt bilgi -->
-  <line x1="500" y1="480" x2="700" y2="480" stroke="#B97882" stroke-width="1.5"/>
-  <text x="600" y="530" text-anchor="middle"
-        font-family="Manrope, sans-serif" font-size="30" letter-spacing="6"
-        fill="#282925" font-weight="500">29 AĞUSTOS 2026</text>
-  <text x="600" y="575" text-anchor="middle"
-        font-family="Cormorant Garamond, Georgia, serif" font-size="34"
-        font-style="italic" fill="#B97882">Bahçem Lounge</text>
+  <line x1="510" y1="500" x2="690" y2="500" stroke="#B97882" stroke-width="1.4"/>
+  <text x="600" y="546" text-anchor="middle"
+        font-family="Manrope, sans-serif" font-size="27" letter-spacing="6"
+        fill="#F8F5EF" font-weight="500">29 AĞUSTOS 2026</text>
+  <text x="600" y="586" text-anchor="middle"
+        font-family="Cormorant Garamond, Georgia, serif" font-size="32"
+        font-style="italic" fill="#D7A6AD">Bahçem Lounge</text>
 </svg>

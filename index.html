@@ -7,7 +7,7 @@
   <!-- ===== SEO ===== -->
   <title>Nisa & Mahmud Feyzullah | Nişan Daveti</title>
   <meta name="description" content="Nisa Korkmaz ve Mahmud Feyzullah Engin'in 29 Ağustos 2026 tarihinde Bahçem Lounge'da gerçekleşecek nişan törenine davetlisiniz." />
-  <meta name="theme-color" content="#F8F5EF" />
+  <meta name="theme-color" content="#30483C" />
   <meta name="author" content="Korkmaz Ailesi & Engin Ailesi" />
 
   <!-- ===== Open Graph / Sosyal Paylaşım ===== -->
@@ -34,8 +34,25 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Botanik & ışık dokularının global katmanı -->
+
+  <!-- ============================================================ -->
+  <!-- SİNEMATİK AÇILIŞ PERDESİ                                      -->
+  <!-- ============================================================ -->
+  <div class="veil" id="veil" aria-hidden="true">
+    <div class="veil__inner">
+      <svg class="veil__seal" viewBox="0 0 120 120" fill="none">
+        <circle class="veil__ring" cx="60" cy="60" r="52" />
+        <circle class="veil__ring veil__ring--in" cx="60" cy="60" r="45" />
+      </svg>
+      <div class="veil__mono">N<span>&amp;</span>M</div>
+      <p class="veil__word">Nişan Daveti</p>
+    </div>
+  </div>
+
+  <!-- Global dokular -->
   <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <canvas class="petals" id="petals" aria-hidden="true"></canvas>
 
   <main>
 
@@ -43,37 +60,35 @@
     <!-- 1. SİNEMATİK AÇILIŞ EKRANI                                    -->
     <!-- ============================================================ -->
     <header class="hero" id="acilis">
-      <!-- Botanik gölgeler ve yumuşak ışık lekeleri -->
       <div class="hero__scene" aria-hidden="true">
         <span class="glow glow--rose"></span>
         <span class="glow glow--sage"></span>
-        <!-- İnce botanik yaprak siluetleri -->
-        <svg class="leaf leaf--tl" viewBox="0 0 200 320" fill="none" aria-hidden="true">
-          <use href="#branch" />
-        </svg>
-        <svg class="leaf leaf--br" viewBox="0 0 200 320" fill="none" aria-hidden="true">
-          <use href="#branch" />
-        </svg>
+        <svg class="leaf leaf--tl" viewBox="0 0 200 320" fill="none"><use href="#branch" /></svg>
+        <svg class="leaf leaf--br" viewBox="0 0 200 320" fill="none"><use href="#branch" /></svg>
       </div>
 
       <div class="hero__inner">
-        <p class="hero__eyebrow reveal">Nişan Daveti</p>
+        <p class="hero__eyebrow rise" data-rise="1">Nişan Daveti</p>
 
-        <div class="monogram reveal" aria-hidden="true">
-          <span>N</span><span class="monogram__amp">&amp;</span><span>M</span>
+        <div class="hero__seal rise" data-rise="2" aria-hidden="true">
+          <svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="53"/></svg>
+          <span>N<i>&amp;</i>M</span>
         </div>
 
-        <h1 class="hero__names reveal">
-          <span class="name">Nisa</span>
-          <span class="amp" aria-hidden="true">&amp;</span>
-          <span class="name name--long">Mahmud Feyzullah</span>
+        <h1 class="hero__names">
+          <span class="name rise" data-rise="3">Nisa</span>
+          <span class="amp rise" data-rise="4" aria-hidden="true">&amp;</span>
+          <span class="name name--long rise" data-rise="5">Mahmud Feyzullah</span>
         </h1>
 
-        <p class="hero__meta reveal">29 Ağustos 2026 · Cumartesi · 19.00</p>
-        <p class="hero__venue reveal">Bahçem Lounge</p>
+        <div class="hero__foot rise" data-rise="6">
+          <span class="hairline" aria-hidden="true"></span>
+          <p class="hero__meta">29 Ağustos 2026 &nbsp;·&nbsp; Cumartesi &nbsp;·&nbsp; 19.00</p>
+          <p class="hero__venue">Bahçem Lounge</p>
+        </div>
       </div>
 
-      <a class="scroll-cue reveal" href="#ayet" aria-label="Davetiyeyi keşfetmek için aşağı kaydırın">
+      <a class="scroll-cue rise" data-rise="7" href="#ayet" aria-label="Davetiyeyi keşfetmek için aşağı kaydırın">
         <span>Davetiyeyi Keşfet</span>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v14M6 12l6 6 6-6" /></svg>
       </a>
@@ -84,9 +99,10 @@
     <!-- ============================================================ -->
     <section class="verse section" id="ayet" aria-labelledby="verse-title">
       <h2 id="verse-title" class="visually-hidden">Ayet</h2>
+      <span class="divider reveal" aria-hidden="true"><svg viewBox="0 0 120 24"><use href="#sprig"/></svg></span>
       <blockquote class="verse__text reveal">
-        “Onlara ısınıp kaynaşasınız diye size kendi türünüzden eşler yaratıp
-        aranıza sevgi ve şefkat duyguları yerleştirmesi de O’nun kanıtlarındandır.”
+        Onlara ısınıp kaynaşasınız diye size kendi türünüzden eşler yaratıp
+        aranıza sevgi ve şefkat duyguları yerleştirmesi de O’nun kanıtlarındandır.
       </blockquote>
       <p class="verse__ref reveal">Rûm Suresi, 21. Ayet</p>
     </section>
@@ -95,7 +111,8 @@
     <!-- 3. DAVET METNİ                                                -->
     <!-- ============================================================ -->
     <section class="invite section" aria-labelledby="invite-title">
-      <h2 id="invite-title" class="section__title reveal">Davet</h2>
+      <p class="eyebrow reveal">Davet</p>
+      <h2 id="invite-title" class="section__title reveal">Sizleri Aramızda Görmek İsteriz</h2>
       <p class="invite__text reveal">
         Sevgiyle başlayan hikâyemizin en güzel adımlarından birini atarken, bu
         anlamlı günümüzde sizleri de yanımızda görmek istiyoruz. Birlikte
@@ -116,6 +133,7 @@
     <!-- 4. CANLI GERİ SAYIM                                          -->
     <!-- ============================================================ -->
     <section class="countdown section" aria-labelledby="countdown-title">
+      <p class="eyebrow reveal">Geri Sayım</p>
       <h2 id="countdown-title" class="section__title reveal">Bu Özel Güne Kalan Zaman</h2>
 
       <div class="countdown__wrap reveal">
@@ -137,7 +155,6 @@
             <span class="cd-label">Saniye</span>
           </div>
         </div>
-        <!-- Ekran okuyucu için erişilebilir metin karşılığı -->
         <p class="visually-hidden" id="cd-sr" aria-live="polite"></p>
         <p class="countdown__done" id="countdown-done" hidden>
           Bugün, hikâyemizin en güzel başlangıçlarından biri. Hoş geldiniz.
@@ -149,6 +166,7 @@
     <!-- 5. ETKİNLİK BİLGİLERİ                                        -->
     <!-- ============================================================ -->
     <section class="details section" aria-labelledby="details-title">
+      <p class="eyebrow reveal">Detaylar</p>
       <h2 id="details-title" class="section__title reveal">Davet Detayları</h2>
 
       <dl class="details__list">
@@ -190,33 +208,37 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- 6. KONUM BÖLÜMÜ                                              -->
+    <!-- 6. KONUM — SİNEMATİK KOYU PANEL                              -->
     <!-- ============================================================ -->
-    <section class="location section" aria-labelledby="location-title">
+    <section class="location" aria-labelledby="location-title">
       <div class="location__scene" aria-hidden="true">
-        <span class="glow glow--sage location__glow"></span>
+        <span class="glow glow--rose"></span>
+        <svg class="leaf leaf--panel" viewBox="0 0 200 320" fill="none"><use href="#branch"/></svg>
+        <svg class="leaf leaf--panel2" viewBox="0 0 200 320" fill="none"><use href="#branch"/></svg>
       </div>
-      <h2 id="location-title" class="section__title reveal">Buluşma Noktamız</h2>
-      <p class="location__venue reveal">Bahçem Lounge</p>
-      <p class="location__sub reveal">
-        Bu özel akşamda sizleri karşılamayı sabırsızlıkla bekliyoruz.
-      </p>
+      <div class="location__inner">
+        <p class="eyebrow eyebrow--light reveal">Buluşma Noktamız</p>
+        <h2 id="location-title" class="location__venue reveal">Bahçem Lounge</h2>
+        <p class="location__sub reveal">
+          Bu özel akşamda sizleri karşılamayı sabırsızlıkla bekliyoruz.
+        </p>
 
-      <div class="actions reveal">
-        <a class="btn btn--primary"
-           href="https://maps.app.goo.gl/74moU6DSwXH2Yefm8?g_st=ic"
-           target="_blank" rel="noopener noreferrer"
-           aria-label="Bahçem Lounge konumunu Google Maps'te yeni sekmede aç">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
-          Google Maps’te Konumu Aç
-        </a>
+        <div class="actions reveal">
+          <a class="btn btn--primary"
+             href="https://maps.app.goo.gl/74moU6DSwXH2Yefm8?g_st=ic"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="Bahçem Lounge konumunu Google Maps'te yeni sekmede aç">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            Google Maps’te Konumu Aç
+          </a>
 
-        <!-- 7. TAKVİME EKLEME -->
-        <button class="btn btn--ghost" id="ics-btn" type="button"
-                aria-label="Nişan törenini takvimime ekle (.ics dosyası indir)">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4M12 12v6M9 15h6"/></svg>
-          Takvimime Ekle
-        </button>
+          <!-- 7. TAKVİME EKLEME -->
+          <button class="btn btn--ghost-light" id="ics-btn" type="button"
+                  aria-label="Nişan törenini takvimime ekle (.ics dosyası indir)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4M12 12v6M9 15h6"/></svg>
+            Takvimime Ekle
+          </button>
+        </div>
       </div>
     </section>
 
@@ -226,13 +248,12 @@
     <footer class="closing section" id="kapanis">
       <div class="closing__scene" aria-hidden="true">
         <span class="glow glow--rose"></span>
-        <svg class="leaf leaf--center" viewBox="0 0 200 320" fill="none" aria-hidden="true">
-          <use href="#branch" />
-        </svg>
+        <svg class="leaf leaf--center" viewBox="0 0 200 320" fill="none"><use href="#branch" /></svg>
       </div>
 
+      <span class="divider reveal" aria-hidden="true"><svg viewBox="0 0 120 24"><use href="#sprig"/></svg></span>
       <p class="closing__lead reveal">Birlikte, sevgiyle, aynı hikâyede…</p>
-      <p class="closing__names reveal">Nisa &amp; Mahmud Feyzullah</p>
+      <p class="closing__names reveal">Nisa <i aria-hidden="true">&amp;</i> Mahmud Feyzullah</p>
       <p class="closing__date reveal">29 · 08 · 2026</p>
       <p class="closing__msg reveal">
         Bu güzel başlangıçta sizleri de yanımızda görmek dileğiyle…
@@ -242,7 +263,7 @@
 
   </main>
 
-  <!-- ===== Yeniden kullanılan botanik SVG tanımı (özgün & sade) ===== -->
+  <!-- ===== Yeniden kullanılan botanik SVG tanımları ===== -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
     <defs>
       <g id="branch" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" fill="none">
@@ -252,6 +273,15 @@
         <path d="M100 195 C72 182 56 160 50 134 C80 140 96 166 100 188" />
         <path d="M100 150 C130 138 146 116 152 90 C122 96 106 120 100 142" />
         <path d="M100 105 C76 94 62 74 57 50 C84 56 97 80 100 100" />
+      </g>
+      <!-- İnce yatay botanik sprig (bölüm ayırıcı) -->
+      <g id="sprig" stroke="currentColor" stroke-width="1" stroke-linecap="round" fill="none">
+        <path d="M4 12 H44" />
+        <path d="M116 12 H76" />
+        <path d="M60 5 C55 8 52 10 52 12 C52 14 55 16 60 19 C65 16 68 14 68 12 C68 10 65 8 60 5 Z" />
+        <path d="M60 5 V19" />
+        <circle cx="48" cy="12" r="1.1" fill="currentColor" stroke="none"/>
+        <circle cx="72" cy="12" r="1.1" fill="currentColor" stroke="none"/>
       </g>
     </defs>
   </svg>
