@@ -47,11 +47,19 @@
     document.body.classList.add("is-ready");
   } else {
     document.body.classList.add("veil-open");
-    // Perde: giriş animasyonu bittikten sonra yukarı kalkar
-    window.setTimeout(function () {
+    // Tasarlanmış davetiye görseli daha uzun süre kalır (okunabilsin)
+    var isImageVeil = veil.classList.contains("veil--image");
+    var HOLD = isImageVeil ? 4400 : 2400;
+    var lifted = false;
+    function lift() {
+      if (lifted) { return; }
+      lifted = true;
       veil.classList.add("is-lifted");
       openHero();
-    }, 2400);
+    }
+    var holdTimer = window.setTimeout(lift, HOLD);
+    // Kullanıcı dokununca perde hemen kalkar
+    veil.addEventListener("click", function () { clearTimeout(holdTimer); lift(); });
     // Perde geçişi bitince DOM'dan kaldır (erişim/performans)
     veil.addEventListener("transitionend", function (e) {
       if (e.propertyName === "transform") { veil.remove(); }

@@ -140,10 +140,26 @@ body {
    sınıfını ekle ve aşağıdaki background-image yolunu aç. İçteki CSS
    monogram/metin otomatik gizlenir (görselde zaten var). */
 .veil--image {
-  background: #30483C center / cover no-repeat;
-  /* background-image: url("assets/veil.webp"); */
+  /* Kâğıt tonuyla eşleşen zemin; görselin tamamı (çerçeve dâhil) görünsün */
+  background: #EFE7DF center / contain no-repeat;
+  background-image: url("assets/veil.webp");
+  cursor: pointer;
 }
 .veil--image .veil__inner { display: none; }
+/* Zarif "dokun" ipucu */
+.veil--image::after {
+  content: "Davetiyeye dokunun";
+  position: absolute;
+  left: 0; right: 0;
+  bottom: calc(env(safe-area-inset-bottom) + 14px);
+  text-align: center;
+  font-family: var(--font-sans);
+  font-size: 0.6rem; letter-spacing: 0.26em; text-transform: uppercase;
+  color: var(--c-rose-dk);
+  opacity: 0;
+  animation: hintIn 1.2s var(--ease) 1.6s forwards;
+}
+@keyframes hintIn { to { opacity: 0.8; } }
 .veil__inner { text-align: center; color: var(--c-white); }
 .veil__seal { width: 116px; height: 116px; margin: 0 auto; color: var(--c-rose); }
 .veil__ring {
