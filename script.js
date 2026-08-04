@@ -8,6 +8,9 @@
   /* ---- DEĞİŞTİRİLEBİLİR ETKİNLİK BİLGİLERİ ---- */
   var CONFIG = {
     targetISO: "2026-08-29T19:00:00+03:00",
+    // Katılım bildirimi için Google Apps Script "Web uygulaması" /exec URL'si.
+    // Boş bırakılırsa "Katılım Bildir" butonu gizlenir.
+    rsvpEndpoint: "",
     ics: {
       title:    "Nisa & Mahmud Feyzullah Nişan Töreni",
       startUTC: "20260829T160000Z", // 29 Ağustos 2026 19.00 TRT
@@ -132,6 +135,79 @@
       a.href = url; a.download = CONFIG.ics.filename;
       document.body.appendChild(a); a.click(); document.body.removeChild(a);
       setTimeout(function () { URL.revokeObjectURL(url); }, 1500);
+    });
+  }
+
+  /* ============================================================
+     KATILIM BİLDİRME (RSVP)
+     Google Apps Script (Sheets) uç noktasına no-cors POST.
+     ============================================================ */
+  var rsvpOpen  = document.getElementById("rsvp-open");
+  var modal     = document.getElementById("rsvp-modal");
+  var form      = document.getElementById("rsvp-form");
+  var thanks    = document.getElementById("rsvp-thanks");
+  var msg       = document.getElementById("rsvp-msg");
+  var submitBtn = document.getElementById("rsvp-submit");
+  var lastFocus = null;
+
+  // Uç nokta tanımlıysa butonu göster
+  if (rsvpOpen && CONFIG.rsvpEndpoint) { rsvpOpen.hidden = false; }
+
+  function openModal() {
+    if (!modal) { return; }
+    lastFocus = document.activeElement;
+    modal.hidden = false;
+    document.body.classList.add("modal-open");
+    var first = modal.querySelector("input, textarea, button");
+    if (first) { first.focus(); }
+    document.addEventListener("keydown", onKey);
+  }
+  function closeModal() {
+    if (!modal) { return; }
+    modal.hidden = true;
+    document.body.classList.remove("modal-open");
+    document.removeEventListener("keydown", onKey);
+    if (lastFocus && lastFocus.focus) { lastFocus.focus(); }
+  }
+  function onKey(e) { if (e.key === "Escape") { closeModal(); } }
+
+  if (rsvpOpen) { rsvpOpen.addEventListener("click", openModal); }
+  if (modal) {
+    modal.addEventListener("click", function (e) {
+      if (e.target.hasAttribute && e.target.closest("[data-close]")) { closeModal(); }
+    });
+  }
+
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      msg.textContent = "";
+      var data = new FormData(form);
+      var ad = (data.get("ad") || "").toString().trim();
+      var durum = data.get("durum");
+      if (!ad) { msg.textContent = "Lütfen ad soyad yazın."; return; }
+      if (!durum) { msg.textContent = "Lütfen katılım durumunu seçin."; return; }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Gönderiliyor…";
+
+      var params = new URLSearchParams();
+      params.append("ad", ad);
+      params.append("durum", durum);
+      params.append("kisi", (data.get("kisi") || "1").toString());
+      params.append("not", (data.get("not") || "").toString());
+      params.append("kaynak", "davet.fngn.com.tr");
+
+      fetch(CONFIG.rsvpEndpoint, { method: "POST", mode: "no-cors", body: params })
+        .then(function () {
+          form.hidden = true;
+          if (thanks) { thanks.hidden = false; }
+        })
+        .catch(function () {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Gönder";
+          msg.textContent = "Bağlantı hatası. Lütfen tekrar deneyin.";
+        });
     });
   }
 })();

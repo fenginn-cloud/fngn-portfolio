@@ -55,6 +55,8 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
+/* hidden özniteliği her zaman gizlesin (display kuralları ezmesin) */
+[hidden] { display: none !important; }
 html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
@@ -273,10 +275,13 @@ body.is-ready .card { opacity: 1; visibility: visible; transform: none; }
 .dress span { color: var(--c-rose-dk); font-weight: 600; }
 
 /* Butonlar */
-.actions { display: flex; gap: 0.6rem; width: 100%; max-width: 380px; margin: 0 0 1.3rem; }
+.actions { display: flex; flex-direction: column; gap: 0.55rem; width: 100%; max-width: 380px; margin: 0 0 1.25rem; }
+.actions__row { display: flex; gap: 0.6rem; }
+.actions__row .btn { flex: 1; }
+.rsvp-open { width: 100%; }
 .btn {
-  flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;
-  min-height: 50px; padding: 0.7rem 0.75rem; border-radius: 999px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;
+  min-height: 50px; padding: 0.7rem 0.9rem; border-radius: 999px;
   font-family: var(--font-sans); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.03em;
   text-decoration: none; cursor: pointer; border: 1px solid transparent;
   transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), background-color 0.3s var(--ease);
@@ -314,6 +319,92 @@ body.is-ready .card { opacity: 1; visibility: visible; transform: none; }
 @media (min-width: 640px) and (min-height: 720px) {
   .card__inner { max-width: 440px; }
 }
+
+/* ============================================================
+   KATILIM (RSVP) MODAL
+   ============================================================ */
+body.modal-open { overflow: hidden; }
+
+.modal {
+  position: fixed; inset: 0; z-index: 70;
+  display: grid; place-items: center;
+  padding: 1.1rem;
+}
+.modal[hidden] { display: none; }
+.modal__backdrop {
+  position: absolute; inset: 0;
+  background: rgba(28, 34, 30, 0.55);
+  backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
+  animation: fadeIn 0.3s var(--ease-cine);
+}
+.modal__card {
+  position: relative; z-index: 1;
+  width: 100%; max-width: 380px;
+  max-height: calc(100dvh - 2.2rem); overflow-y: auto;
+  background: linear-gradient(180deg, #fbf8f2, var(--c-paper));
+  border-radius: 20px; padding: 1.6rem 1.4rem 1.5rem;
+  box-shadow: 0 40px 90px -30px rgba(0,0,0,0.5);
+  text-align: center;
+  animation: modalIn 0.45s var(--ease-cine);
+}
+@keyframes fadeIn { from { opacity: 0; } }
+@keyframes modalIn { from { opacity: 0; transform: translateY(16px) scale(0.97); } }
+
+.modal__x {
+  position: absolute; top: 0.7rem; right: 0.7rem;
+  width: 34px; height: 34px; display: grid; place-items: center;
+  background: transparent; border: none; cursor: pointer; color: var(--c-forest); border-radius: 50%;
+}
+.modal__x svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; }
+.modal__x:hover { background: rgba(48,72,60,0.08); }
+.modal__title {
+  font-family: var(--font-serif); font-weight: 500; font-size: 1.7rem; color: var(--c-forest);
+  margin: 0 0 1.2rem; line-height: 1.15;
+}
+
+/* Form */
+.rsvp { display: flex; flex-direction: column; gap: 0.85rem; text-align: left; }
+.rsvp__field { display: flex; flex-direction: column; gap: 0.35rem; }
+.rsvp__field > span {
+  font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--c-rose-dk); font-weight: 600;
+}
+.rsvp__field > span em { font-style: normal; text-transform: none; letter-spacing: 0; color: var(--c-ink); opacity: 0.6; font-size: 0.9em; }
+.rsvp input[type="text"], .rsvp input[type="number"], .rsvp textarea {
+  width: 100%; font-family: var(--font-sans); font-size: 0.95rem; color: var(--c-ink);
+  background: rgba(255,255,255,0.7); border: 1px solid var(--c-line); border-radius: 12px;
+  padding: 0.7rem 0.85rem; outline: none;
+  transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+.rsvp textarea { resize: vertical; min-height: 2.6rem; }
+.rsvp input:focus, .rsvp textarea:focus {
+  border-color: var(--c-rose-dk); box-shadow: 0 0 0 3px rgba(185,120,130,0.14);
+}
+.rsvp__field--sm { max-width: 130px; }
+
+.rsvp__choice { border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.4rem; }
+.rsvp__choice legend {
+  font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--c-rose-dk); font-weight: 600; padding: 0; margin-bottom: 0.15rem;
+}
+.rsvp__choice label {
+  display: flex; align-items: center; gap: 0.55rem; cursor: pointer;
+  font-size: 0.95rem; color: var(--c-ink);
+  border: 1px solid var(--c-line); border-radius: 12px; padding: 0.6rem 0.85rem;
+  transition: border-color 0.25s var(--ease), background-color 0.25s var(--ease);
+}
+.rsvp__choice input { accent-color: var(--c-forest); width: 18px; height: 18px; }
+.rsvp__choice label:has(input:checked) { border-color: var(--c-forest); background: rgba(48,72,60,0.05); }
+
+.rsvp button[type="submit"] { margin-top: 0.35rem; width: 100%; }
+.rsvp__msg { margin: 0; min-height: 1em; font-size: 0.8rem; color: var(--c-rose-dk); text-align: center; }
+
+/* Teşekkür */
+.rsvp__thanks { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; padding: 0.5rem 0; }
+.rsvp__tick svg { width: 56px; height: 56px; fill: none; stroke: var(--c-forest); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.rsvp__thanks-t { font-family: var(--font-serif); font-size: 1.5rem; color: var(--c-forest); margin: 0.2rem 0 0; }
+.rsvp__thanks-s { font-size: 0.9rem; color: var(--c-ink); opacity: 0.8; margin: 0 0 0.6rem; line-height: 1.5; }
+.rsvp__thanks .btn { width: auto; padding-left: 1.6rem; padding-right: 1.6rem; }
 
 /* ============================================================
    HAREKET AZALTMA
