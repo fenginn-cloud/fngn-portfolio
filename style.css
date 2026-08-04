@@ -181,13 +181,13 @@ body.is-open .intro { pointer-events: none; }
 .seal b { font-family: var(--font-serif); font-weight: 500; font-size: 0.92rem; color: var(--c-forest); }
 .seal i { color: var(--c-rose-dk); font-style: italic; }
 
-/* Çocukluk fotoğrafı — hatıra medalyonu */
+/* Çocukluk fotoğrafı — çerçevesiz (yatay) */
 .photo {
-  margin: 0 0 1.1rem; width: clamp(148px, 44vw, 184px); aspect-ratio: 1;
-  border-radius: 18px; padding: 6px; background: #fff;
-  box-shadow: 0 18px 36px -18px rgba(48,72,60,0.5), 0 0 0 1px rgba(48,72,60,0.06);
+  margin: 0 0 1.15rem; width: clamp(220px, 70vw, 310px); aspect-ratio: 5 / 3;
+  border-radius: 14px; overflow: hidden;
+  box-shadow: 0 22px 44px -22px rgba(48,72,60,0.45);
 }
-.photo img { width: 100%; height: 100%; object-fit: cover; border-radius: 13px; display: block; }
+.photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 .names {
   font-family: var(--font-serif); font-weight: 500; color: var(--c-forest); margin: 0;
@@ -230,11 +230,17 @@ body.is-open .intro { pointer-events: none; }
   color: var(--c-rose-dk); font-weight: 600;
 }
 
-/* Yemekli davet notu */
-.note {
-  margin: 0 0 1.05rem; font-family: var(--font-serif); font-style: italic;
-  font-size: 1.1rem; line-height: 1.5; color: var(--c-forest); max-width: 23em;
+/* Etkinlik Bilgileri */
+.info { margin: 0 0 1.15rem; }
+.info .eyebrow { margin-bottom: 0.75rem; }
+.info__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.55rem; }
+.info__list li {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
+  font-family: var(--font-serif); font-size: 1.2rem; color: var(--c-forest); line-height: 1.2;
 }
+.info__list b { font-weight: 500; color: var(--c-rose-dk); }
+.info__ic { display: inline-grid; place-items: center; width: 26px; height: 26px; color: var(--c-rose-dk); flex-shrink: 0; }
+.info__ic svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
 
 .dress {
   margin: 0 0 1.2rem; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--c-ink);
