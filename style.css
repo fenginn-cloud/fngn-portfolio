@@ -193,9 +193,9 @@ body.is-open .intro { pointer-events: none; }
   font-family: var(--font-serif); font-weight: 500; color: var(--c-forest); margin: 0;
   display: flex; flex-direction: column; align-items: center; gap: 0.02em; line-height: 1.02;
 }
-.names__a { font-size: clamp(2.6rem, 12vw, 3.6rem); }
-.names__amp { font-size: clamp(1.4rem, 5vw, 1.9rem); color: var(--c-rose-dk); font-style: italic; margin: 0.04em 0; }
-.names__b { font-size: clamp(1.7rem, 7.6vw, 2.5rem); line-height: 1.05; }
+/* İki isim de aynı boyda; uzun isim taşmasın diye ölçek ona göre */
+.names__a, .names__b { font-size: clamp(2rem, 9vw, 2.8rem); line-height: 1.05; }
+.names__amp { font-size: clamp(1.3rem, 5vw, 1.8rem); color: var(--c-rose-dk); font-style: italic; margin: 0.06em 0; }
 
 .meta {
   margin: 1rem 0 0.25rem; font-size: 0.74rem; letter-spacing: 0.15em;
