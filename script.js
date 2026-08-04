@@ -7,15 +7,14 @@
 
   /* ---- DEĞİŞTİRİLEBİLİR ETKİNLİK BİLGİLERİ ---- */
   var CONFIG = {
-    targetISO: "2026-08-29T19:00:00+03:00",
     // Katılım bildirimi için Google Apps Script "Web uygulaması" /exec URL'si.
     // Boş bırakılırsa "Katılım Bildir" butonu gizlenir.
     rsvpEndpoint: "https://script.google.com/macros/s/AKfycbxD6_mEdSCVlre2oaHx2h2WuG9deIVvT9WWvkztpakjLkOC9k7OWVTJbjLe6UeOqQxwvw/exec",
     ics: {
       title:    "Nisa & Mahmud Feyzullah Nişan Töreni",
-      startUTC: "20260829T160000Z", // 29 Ağustos 2026 19.00 TRT
+      startUTC: "20260829T163000Z", // 29 Ağustos 2026 19.30 TRT
       endUTC:   "20260829T200000Z", // 29 Ağustos 2026 23.00 TRT
-      location: "Bahçem Lounge",
+      location: "Bahçem Lounge Event",
       mapUrl:   "https://maps.app.goo.gl/74moU6DSwXH2Yefm8?g_st=ic",
       description: "Nisa Korkmaz ve Mahmud Feyzullah Engin'in nişan töreni.",
       filename: "nisa-mahmud-feyzullah-nisan.ics"
@@ -80,51 +79,6 @@
       if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openCurtain(); }
     });
   }
-
-  /* ============================================================
-     CANLI GERİ SAYIM (Europe/Istanbul)
-     ============================================================ */
-  var target = new Date(CONFIG.targetISO).getTime();
-  var el = {
-    days:  document.getElementById("cd-days"),
-    hours: document.getElementById("cd-hours"),
-    mins:  document.getElementById("cd-mins"),
-    secs:  document.getElementById("cd-secs"),
-    grid:  document.getElementById("countdown"),
-    done:  document.getElementById("countdown-done"),
-    sr:    document.getElementById("cd-sr")
-  };
-  var timerId = null, lastDay = null;
-
-  function pad(n, len) { var s = String(n); while (s.length < (len || 2)) { s = "0" + s; } return s; }
-  function setNum(node, v) { if (node && node.textContent !== v) { node.textContent = v; } }
-
-  function render() {
-    var diff = target - Date.now();
-    if (diff <= 0) {
-      if (el.grid) { el.grid.hidden = true; }
-      if (el.done) { el.done.hidden = false; }
-      if (el.sr)   { el.sr.textContent = "Etkinlik günü geldi."; }
-      if (timerId) { clearInterval(timerId); timerId = null; }
-      return;
-    }
-    var t = Math.floor(diff / 1000);
-    var d = Math.floor(t / 86400);
-    var h = Math.floor((t % 86400) / 3600);
-    var m = Math.floor((t % 3600) / 60);
-    var s = t % 60;
-    setNum(el.days, pad(d, 3));
-    setNum(el.hours, pad(h));
-    setNum(el.mins, pad(m));
-    setNum(el.secs, pad(s));
-    if (el.sr && d !== lastDay) {
-      lastDay = d;
-      el.sr.textContent = "Etkinliğe kalan süre: " + d + " gün, " + h + " saat, " + m + " dakika.";
-    }
-  }
-  function start() { render(); if (!timerId) { timerId = setInterval(render, 1000); } }
-  document.addEventListener("visibilitychange", function () { if (!document.hidden) { render(); } });
-  start();
 
   /* ============================================================
      TAKVİME EKLEME (.ics)

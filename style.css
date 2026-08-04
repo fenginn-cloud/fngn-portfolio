@@ -62,9 +62,10 @@ body {
   margin: 0;
   min-height: 100dvh;
   background:
-    radial-gradient(ellipse 60% 40% at 82% 6%, rgba(215,166,173,0.18), transparent 60%),
-    radial-gradient(ellipse 70% 50% at 8% 30%, rgba(152,166,143,0.15), transparent 55%),
-    linear-gradient(180deg, var(--c-white) 0%, var(--c-cream) 100%);
+    radial-gradient(ellipse 66% 42% at 84% 3%, rgba(215,166,173,0.30), transparent 60%),
+    radial-gradient(ellipse 58% 44% at 10% 24%, rgba(152,166,143,0.17), transparent 55%),
+    radial-gradient(ellipse 85% 48% at 50% 106%, rgba(215,166,173,0.24), transparent 65%),
+    linear-gradient(180deg, #FBF6F1 0%, #F3ECE2 58%, #F8F0EB 100%);
   color: var(--c-ink);
   font-family: var(--font-sans);
   line-height: 1.6;
@@ -90,13 +91,19 @@ img, svg { max-width: 100%; display: block; }
 
 /* Ortak dekor */
 .glow { position: absolute; border-radius: 50%; filter: blur(60px); pointer-events: none; }
-.glow--rose { width: 60vw; max-width: 420px; aspect-ratio: 1; opacity: 0.5;
-  background: radial-gradient(circle, rgba(215,166,173,0.55), transparent 70%); top: -10%; right: -12%; }
-.glow--sage { width: 62vw; max-width: 440px; aspect-ratio: 1; opacity: 0.4;
+.glow--rose { width: 64vw; max-width: 440px; aspect-ratio: 1; opacity: 0.62;
+  background: radial-gradient(circle, rgba(215,166,173,0.7), transparent 70%); top: -10%; right: -12%; }
+.glow--sage { width: 60vw; max-width: 420px; aspect-ratio: 1; opacity: 0.4;
   background: radial-gradient(circle, rgba(152,166,143,0.5), transparent 70%); bottom: -12%; left: -14%; }
 .leaf { position: absolute; color: var(--c-sage); opacity: 0.16; width: clamp(120px, 34vw, 210px); }
+.leaf--tr { top: -3%; right: -7%; transform: rotate(18deg) scaleX(-1); }
 .leaf--tl { top: -2%; left: -8%; transform: rotate(-12deg); }
 .leaf--br { bottom: -2%; right: -9%; transform: rotate(168deg); }
+
+/* Çiçek dalları (zarif, abartısız) */
+.bloom { position: absolute; width: clamp(64px, 18vw, 104px); }
+.bloom--tl { top: 1.5%; left: -3%; color: var(--c-rose-dk); opacity: 0.22; transform: rotate(-16deg); }
+.bloom--br { bottom: 1%; right: -3%; color: var(--c-sage); opacity: 0.28; transform: rotate(166deg); }
 
 /* ============================================================
    PERDE AÇILIŞI (iki yana açılan perde + ses)
@@ -119,6 +126,7 @@ img, svg { max-width: 100%; display: block; }
   position: absolute; inset: 0; z-index: 2;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.3rem;
   text-align: center; color: var(--c-white);
+  background: radial-gradient(circle at 50% 42%, rgba(215,166,173,0.20), transparent 42%);
   transition: opacity 0.55s var(--ease-cine);
 }
 .iseal { position: relative; width: 86px; height: 86px; display: grid; place-items: center; margin-bottom: 1rem; }
@@ -195,8 +203,8 @@ body.is-open .intro { pointer-events: none; }
 }
 .venue { margin: 0; font-family: var(--font-serif); font-style: italic; font-size: 1.35rem; color: var(--c-rose-dk); }
 
-.divider { display: block; color: var(--c-sage); margin: 1.1rem 0; }
-.divider svg { width: 108px; height: 22px; }
+.divider { display: block; color: var(--c-rose-dk); opacity: 0.85; margin: 1.05rem 0; }
+.divider svg { width: 122px; height: 24px; }
 
 .verse {
   margin: 0 0 1.15rem; font-family: var(--font-serif); font-style: italic;
@@ -207,18 +215,26 @@ body.is-open .intro { pointer-events: none; }
   font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--c-rose-dk);
 }
 
-/* Geri sayım (kompakt) */
-.cd {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.4rem;
-  width: 100%; max-width: 340px; margin: 0 auto 1.1rem;
+/* Nişan tarihi */
+.datebox {
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  margin: 0.3rem 0 1.05rem;
 }
-.cd__u { position: relative; display: flex; flex-direction: column; align-items: center; gap: 0.3rem; }
-.cd__u + .cd__u::before { content: ""; position: absolute; left: 0; top: 16%; height: 42%; width: 1px; background: var(--c-line); }
-.cd__n { font-family: var(--font-serif); font-weight: 500; font-size: clamp(1.7rem, 8.5vw, 2.4rem);
-  line-height: 1; color: var(--c-forest); font-variant-numeric: tabular-nums; }
-.cd__l { font-size: 0.54rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--c-rose-dk); font-weight: 600; }
-.cd__done { font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; line-height: 1.5;
-  color: var(--c-forest); max-width: 24em; margin: 0 auto 1.1rem; }
+.datebox__line { width: 46px; height: 1px; background: var(--c-rose-dk); opacity: 0.5; }
+.datebox__main {
+  font-family: var(--font-serif); font-weight: 500; font-size: clamp(1.95rem, 8vw, 2.5rem);
+  color: var(--c-forest); line-height: 1; letter-spacing: 0.01em;
+}
+.datebox__sub {
+  font-family: var(--font-sans); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--c-rose-dk); font-weight: 600;
+}
+
+/* Yemekli davet notu */
+.note {
+  margin: 0 0 1.05rem; font-family: var(--font-serif); font-style: italic;
+  font-size: 1.1rem; line-height: 1.5; color: var(--c-forest); max-width: 23em;
+}
 
 .dress {
   margin: 0 0 1.2rem; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--c-ink);
