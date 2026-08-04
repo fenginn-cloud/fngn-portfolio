@@ -10,7 +10,7 @@
     targetISO: "2026-08-29T19:00:00+03:00",
     // Katılım bildirimi için Google Apps Script "Web uygulaması" /exec URL'si.
     // Boş bırakılırsa "Katılım Bildir" butonu gizlenir.
-    rsvpEndpoint: "",
+    rsvpEndpoint: "https://script.google.com/macros/s/AKfycbxD6_mEdSCVlre2oaHx2h2WuG9deIVvT9WWvkztpakjLkOC9k7OWVTJbjLe6UeOqQxwvw/exec",
     ics: {
       title:    "Nisa & Mahmud Feyzullah Nişan Töreni",
       startUTC: "20260829T160000Z", // 29 Ağustos 2026 19.00 TRT
