@@ -15,7 +15,7 @@
       startUTC: "20260829T163000Z", // 29 Ağustos 2026 19.30 TRT
       endUTC:   "20260829T200000Z", // 29 Ağustos 2026 23.00 TRT
       location: "Bahçe'm Event, Gölbaşı",
-      mapUrl:   "https://maps.app.goo.gl/74moU6DSwXH2Yefm8?g_st=ic",
+      mapUrl:   "https://maps.app.goo.gl/1Pt2jgpVTAWeJ5qx9?g_st=ic",
       description: "Nisa Korkmaz ve Mahmud Feyzullah Engin'in nişan töreni.",
       filename: "nisa-mahmud-feyzullah-nisan.ics"
     }
