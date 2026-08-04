@@ -10,13 +10,12 @@
   <meta name="theme-color" content="#30483C" />
   <meta name="author" content="Korkmaz Ailesi & Engin Ailesi" />
 
-  <!-- ===== Open Graph / Sosyal Paylaşım ===== -->
+  <!-- ===== Open Graph ===== -->
   <meta property="og:title" content="Nisa & Mahmud Feyzullah" />
   <meta property="og:description" content="Nişan törenimize davetlisiniz · 29 Ağustos 2026 · Bahçem Lounge" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="tr_TR" />
   <meta property="og:url" content="https://davet.fngn.com.tr/" />
-  <!-- WhatsApp/Facebook büyük önizleme için: mutlak URL + JPG + küçük boyut (<300KB) -->
   <meta property="og:image" content="https://davet.fngn.com.tr/assets/og-cover.jpg" />
   <meta property="og:image:secure_url" content="https://davet.fngn.com.tr/assets/og-cover.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
@@ -28,11 +27,11 @@
   <meta name="twitter:description" content="Nişan törenimize davetlisiniz · 29 Ağustos 2026 · Bahçem Lounge" />
   <meta name="twitter:image" content="https://davet.fngn.com.tr/assets/og-cover.jpg" />
 
-  <!-- ===== Favicon / Monogram ===== -->
+  <!-- ===== Favicon ===== -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="apple-touch-icon" href="favicon.svg" />
 
-  <!-- ===== Yerel fontlar (CDN yok) ===== -->
+  <!-- ===== Yerel fontlar ===== -->
   <link rel="preload" href="assets/fonts/cormorant-garamond-normal-latin-ext.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/manrope-normal-latin-ext.woff2" as="font" type="font/woff2" crossorigin />
 
@@ -40,41 +39,27 @@
 </head>
 <body class="is-sealed">
 
-  <!-- Global dokular -->
   <div class="grain" aria-hidden="true"></div>
 
   <!-- ============================================================ -->
-  <!-- ZARF AÇILIŞI                                                  -->
+  <!-- PERDE AÇILIŞI                                                 -->
   <!-- ============================================================ -->
-  <div class="intro" id="intro">
-    <div class="intro__scene" aria-hidden="true">
-      <span class="glow glow--rose"></span>
-      <span class="glow glow--sage"></span>
-    </div>
-
-    <div class="env" id="env" role="button" tabindex="0"
-         aria-label="Davetiyeyi açmak için mühre dokunun">
-      <div class="env__back" aria-hidden="true"></div>
-      <!-- İçeriden yükselecek mektup (kısa önizleme) -->
-      <div class="env__letter" aria-hidden="true">
-        <span class="env__eyebrow">Nişan Daveti</span>
-        <span class="env__names">Nisa <i>&amp;</i> Mahmud&nbsp;Feyzullah</span>
-        <span class="env__date">29 · 08 · 2026</span>
-      </div>
-      <div class="env__pocket" aria-hidden="true"></div>
-      <div class="env__flap" aria-hidden="true"></div>
-      <!-- Mühür -->
-      <span class="env__seal" aria-hidden="true">
+  <div class="intro" id="intro" role="button" tabindex="0"
+       aria-label="Davetiyeyi açmak için dokunun">
+    <div class="curtain curtain--l" aria-hidden="true"></div>
+    <div class="curtain curtain--r" aria-hidden="true"></div>
+    <div class="intro__center">
+      <span class="iseal" aria-hidden="true">
         <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="54"/><circle cx="60" cy="60" r="46"/></svg>
         <b>N<i>&amp;</i>F</b>
       </span>
+      <p class="intro__eyebrow">Nişan Daveti</p>
+      <p class="intro__hint" id="hint">Davetiyeyi açmak için dokunun</p>
     </div>
-
-    <p class="intro__hint" id="hint">Davetiyeyi açmak için dokunun</p>
   </div>
 
   <!-- ============================================================ -->
-  <!-- KOMPAKT DAVETİYE KARTI (tek ekran)                           -->
+  <!-- DAVETİYE KARTI                                               -->
   <!-- ============================================================ -->
   <main class="card" id="card" aria-hidden="true">
     <div class="card__scene" aria-hidden="true">
@@ -87,10 +72,11 @@
     <div class="card__inner">
       <p class="eyebrow">Nişan Daveti</p>
 
-      <span class="seal" aria-hidden="true">
-        <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="53"/></svg>
-        <b>N<i>&amp;</i>F</b>
-      </span>
+      <!-- Çocukluk fotoğrafı — küçük hatıra -->
+      <figure class="photo">
+        <img src="assets/photo.jpg" width="520" height="523" loading="lazy"
+             alt="Nisa ve Mahmud Feyzullah'ın çocukluk fotoğrafı" />
+      </figure>
 
       <h1 class="names">
         <span class="names__a">Nisa</span>
@@ -120,6 +106,13 @@
 
       <p class="dress">Dress Code · <span>Şık Davet</span></p>
 
+      <!-- Konum + harita önizlemesi -->
+      <div class="map">
+        <iframe class="map__frame" title="Bahçem Lounge konumu — Google Haritalar" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps?q=Bah%C3%A7em%20Lounge&z=15&output=embed"></iframe>
+      </div>
+
       <!-- Aksiyonlar -->
       <div class="actions">
         <button class="btn btn--primary rsvp-open" id="rsvp-open" type="button" hidden
@@ -148,7 +141,7 @@
   </main>
 
   <!-- ============================================================ -->
-  <!-- KATILIM BİLDİRME (RSVP) PENCERESİ                            -->
+  <!-- KATILIM (RSVP) PENCERESİ                                     -->
   <!-- ============================================================ -->
   <div class="modal" id="rsvp-modal" role="dialog" aria-modal="true" aria-labelledby="rsvp-title" hidden>
     <div class="modal__backdrop" data-close></div>
@@ -164,23 +157,19 @@
           <span>Ad Soyad</span>
           <input name="ad" type="text" required autocomplete="name" placeholder="Adınız ve soyadınız" />
         </label>
-
         <fieldset class="rsvp__choice">
           <legend>Katılım durumu</legend>
           <label><input type="radio" name="durum" value="Katılıyorum" required /><span>Katılıyorum</span></label>
           <label><input type="radio" name="durum" value="Katılamıyorum" /><span>Katılamıyorum</span></label>
         </fieldset>
-
         <label class="rsvp__field rsvp__field--sm">
           <span>Kişi sayısı</span>
           <input name="kisi" type="number" min="1" max="15" value="1" inputmode="numeric" />
         </label>
-
         <label class="rsvp__field">
           <span>Not <em>(isteğe bağlı)</em></span>
           <textarea name="not" rows="2" placeholder="İletmek istediğiniz bir not…"></textarea>
         </label>
-
         <button class="btn btn--primary" type="submit" id="rsvp-submit">Gönder</button>
         <p class="rsvp__msg" id="rsvp-msg" role="status" aria-live="polite"></p>
       </form>

@@ -26,38 +26,58 @@
     window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ============================================================
-     ZARF AÇILIŞI
+     PERDE AÇILIŞI + AÇILIŞ SESİ
      ============================================================ */
   var body = document.body;
   var intro = document.getElementById("intro");
-  var env = document.getElementById("env");
   var card = document.getElementById("card");
   var opened = false;
 
-  function openEnvelope() {
+  // Yumuşak açılış çıngırağı (Web Audio — dosya gerekmez, dokunuşla tetiklenir)
+  function playChime() {
+    try {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) { return; }
+      var ctx = new AC();
+      var now = ctx.currentTime;
+      var notes = [587.33, 783.99, 1046.5]; // D5 · G5 · C6 — havadar, zarif
+      var master = ctx.createGain();
+      master.gain.value = 0.16;
+      master.connect(ctx.destination);
+      notes.forEach(function (f, i) {
+        var o = ctx.createOscillator(), g = ctx.createGain();
+        o.type = "sine"; o.frequency.value = f;
+        var t = now + i * 0.14;
+        g.gain.setValueAtTime(0.0001, t);
+        g.gain.exponentialRampToValueAtTime(1, t + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + 1.5);
+        o.connect(g); g.connect(master);
+        o.start(t); o.stop(t + 1.6);
+      });
+      setTimeout(function () { try { ctx.close(); } catch (e) {} }, 2200);
+    } catch (e) { /* ses engellenirse sorun değil */ }
+  }
+
+  function openCurtain() {
     if (opened) { return; }
     opened = true;
+    playChime();
     body.classList.remove("is-sealed");
     body.classList.add("is-open");
     if (card) { card.setAttribute("aria-hidden", "false"); }
-    // Animasyon bitince zarfı DOM'dan kaldır
-    window.setTimeout(function () { if (intro) { intro.remove(); } }, 2000);
+    // Perde animasyonu bitince katmanı DOM'dan kaldır
+    window.setTimeout(function () { if (intro) { intro.remove(); } }, 1500);
   }
 
-  if (prefersReduced || !intro || !env) {
-    // Hareket azaltma: doğrudan kart
+  if (prefersReduced || !intro) {
     body.classList.remove("is-sealed");
     body.classList.add("is-ready");
     if (intro) { intro.remove(); }
     if (card) { card.setAttribute("aria-hidden", "false"); }
   } else {
-    env.addEventListener("click", openEnvelope);
-    env.addEventListener("keydown", function (e) {
-      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openEnvelope(); }
-    });
-    // Zarfın herhangi bir yerine dokunmak da açar
-    intro.addEventListener("click", function (e) {
-      if (e.target !== env && !env.contains(e.target)) { openEnvelope(); }
+    intro.addEventListener("click", openCurtain);
+    intro.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openCurtain(); }
     });
   }
 
