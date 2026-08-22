@@ -10,6 +10,8 @@
     // Katılım bildirimi için Google Apps Script "Web uygulaması" /exec URL'si.
     // Boş bırakılırsa "Katılım Bildir" butonu gizlenir.
     rsvpEndpoint: "https://script.google.com/macros/s/AKfycbxD6_mEdSCVlre2oaHx2h2WuG9deIVvT9WWvkztpakjLkOC9k7OWVTJbjLe6UeOqQxwvw/exec",
+    // Google'dan bağımsız ikinci kayıt (yedek): Formspree
+    formspreeEndpoint: "https://formspree.io/f/mnngygyy",
     ics: {
       title:    "Nisa & Mahmud Feyzullah Nişan Töreni",
       startUTC: "20260829T163000Z", // 29 Ağustos 2026 19.30 TRT
@@ -172,16 +174,32 @@
       params.append("not", (data.get("not") || "").toString());
       params.append("kaynak", "davet.fngn.com.tr");
 
-      fetch(CONFIG.rsvpEndpoint, { method: "POST", mode: "no-cors", body: params })
-        .then(function () {
+      // Katılım aynı anda İKİ bağımsız yere gönderilir:
+      // 1) Google Apps Script (tablo + e-posta) — opak (no-cors)
+      // 2) Formspree (Google'dan bağımsız yedek pano + e-posta)
+      var sends = [];
+      if (CONFIG.rsvpEndpoint) {
+        sends.push(fetch(CONFIG.rsvpEndpoint, { method: "POST", mode: "no-cors", body: params }));
+      }
+      if (CONFIG.formspreeEndpoint) {
+        sends.push(fetch(CONFIG.formspreeEndpoint, {
+          method: "POST",
+          headers: { "Accept": "application/json" },
+          body: params
+        }));
+      }
+
+      Promise.allSettled(sends).then(function (results) {
+        var anyOk = results.some(function (r) { return r.status === "fulfilled"; });
+        if (anyOk) {
           form.hidden = true;
           if (thanks) { thanks.hidden = false; }
-        })
-        .catch(function () {
+        } else {
           submitBtn.disabled = false;
           submitBtn.textContent = "Gönder";
           msg.textContent = "Bağlantı hatası. Lütfen tekrar deneyin.";
-        });
+        }
+      });
     });
   }
 })();
