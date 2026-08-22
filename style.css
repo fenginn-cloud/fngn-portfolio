@@ -364,6 +364,10 @@ body.modal-open { overflow: hidden; }
 .rsvp__choice input { accent-color: var(--c-forest); width: 18px; height: 18px; }
 .rsvp__choice label:has(input:checked) { border-color: var(--c-forest); background: rgba(48,72,60,0.05); }
 
+.rsvp__attire {
+  margin: 0.15rem 0 0.15rem; text-align: center;
+  font-family: var(--font-serif); font-style: italic; font-size: 0.92rem; color: var(--c-rose-dk);
+}
 .rsvp button[type="submit"] { margin-top: 0.35rem; width: 100%; }
 .rsvp__msg { margin: 0; min-height: 1em; font-size: 0.8rem; color: var(--c-rose-dk); text-align: center; }
 
